@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.performance</groupId>
+  <artifactId>gatling-performance</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+  <name>Gatling Performance Test Suite</name>
+
+  <properties>
+    <java.version>17</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <gatling.version>3.10.5</gatling.version>
+    <gatling-maven-plugin.version>4.9.6</gatling-maven-plugin.version>
+    <!-- Override at runtime: mvn gatling:test -Dgatling.simulationClass=simulations.LoadSimulation -->
+    <gatling.simulationClass>simulations.SmokeSimulation</gatling.simulationClass>
+    <!-- Scenario parameters (overridable via -D) -->
+    <base.url>https://reqres.in</base.url>
+    <smoke.users>1</smoke.users>
+    <load.users>20</load.users>
+    <load.rampSeconds>30</load.rampSeconds>
+    <load.durationSeconds>300</load.durationSeconds>
+    <stress.users>100</stress.users>
+    <stress.rampSeconds>60</stress.rampSeconds>
+    <stress.durationSeconds>600</stress.durationSeconds>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.gatling.highcharts</groupId>
+      <artifactId>gatling-charts-highcharts</artifactId>
+      <version>${gatling.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>io.gatling</groupId>
+        <artifactId>gatling-maven-plugin</artifactId>
+        <version>${gatling-maven-plugin.version}</version>
+        <configuration>
+          <simulationClass>${gatling.simulationClass}</simulationClass>
+          <resultsFolder>${project.build.directory}/gatling</resultsFolder>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
