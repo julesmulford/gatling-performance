@@ -1,8 +1,8 @@
 # gatling-performance
 
-> **GitHub repo description:** Gatling performance test suite — Java DSL, smoke/load/stress/spike simulations targeting reqres.in REST API with HTML reporting and CI/CD.
+Gatling performance test suite — Java DSL, smoke/load/stress/spike simulations targeting reqres.in REST API with HTML reporting and CI/CD.
 
-A professional-grade performance testing suite using Gatling 3.10 (Java DSL) demonstrating enterprise patterns: scenario composition, parameterised injection profiles, JSON path extraction chaining, multi-stage ramp-up, reusable scenario chains, and threshold-driven CI assertions.
+Gatling 3.10 (Java DSL) demonstrating enterprise patterns: scenario composition, parameterised injection profiles, JSON path extraction chaining, multi-stage ramp-up, reusable scenario chains, and threshold-driven CI assertions.
 
 ## Tech Stack
 

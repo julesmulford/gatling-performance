@@ -95,8 +95,9 @@ public final class ReqresScenarios {
                     .exec(getUser)
                     .pause(1, 2)
                     .randomSwitch()
-                        .on(80, exec(listUsers).pause(1))
-                        .on(20, exec(createUser).pause(1));
+                        .on(
+                            percent(80.0).then(exec(listUsers).pause(1)),
+                            percent(20.0).then(exec(createUser).pause(1)));
 
     /**
      * Stress scenario: maximum throughput with minimal pauses.
@@ -113,13 +114,13 @@ public final class ReqresScenarios {
     // ─── Private helpers ───────────────────────────────────────────────────
 
     private static io.gatling.javaapi.core.FeederBuilder<Object> feeder() {
-        return listOf(
-                java.util.Map.of("page", 1, "userId", 1),
-                java.util.Map.of("page", 1, "userId", 2),
-                java.util.Map.of("page", 2, "userId", 3),
-                java.util.Map.of("page", 2, "userId", 4),
-                java.util.Map.of("page", 1, "userId", 5),
-                java.util.Map.of("page", 2, "userId", 6)
-        ).random();
+        return listFeeder(java.util.List.of(
+                java.util.Map.<String, Object>of("page", 1, "userId", 1),
+                java.util.Map.<String, Object>of("page", 1, "userId", 2),
+                java.util.Map.<String, Object>of("page", 2, "userId", 3),
+                java.util.Map.<String, Object>of("page", 2, "userId", 4),
+                java.util.Map.<String, Object>of("page", 1, "userId", 5),
+                java.util.Map.<String, Object>of("page", 2, "userId", 6)
+        )).random();
     }
 }
